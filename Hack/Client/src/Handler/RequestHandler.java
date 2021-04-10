@@ -1,6 +1,7 @@
 package Handler;
 
 import Helper.FullUser;
+import Helper.TravelAdd;
 import Helper.User;
 import Main.ClientMain;
 import com.fasterxml.jackson.core.JsonParser;
@@ -155,7 +156,7 @@ public class RequestHandler implements Runnable{
 
     }
 
-    public User login_request(String username, String password) throws IOException, InterruptedException {
+    public User login_request(String username, String password) throws IOException {
         mapper = new ObjectMapper();
         jsonString = null;
         var values = new HashMap<String,String>(){{
@@ -163,9 +164,11 @@ public class RequestHandler implements Runnable{
             put("password",password);
 
         }};
-
+        try {
             jsonString = mapper.writeValueAsString(values);
-
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
 //                  System.out.println(jsonString);
         System.out.println(jsonString);
         client = HttpClient.newHttpClient();
@@ -175,9 +178,13 @@ public class RequestHandler implements Runnable{
                 .POST(HttpRequest.BodyPublishers.ofString(jsonString))
                 .build();
         response = null;
-
+        try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.println(response.body());
         System.out.println(response.statusCode());
         int s = response.statusCode();
@@ -233,7 +240,7 @@ public class RequestHandler implements Runnable{
 //        FullUser fullUser = mapper.readValue((response.body()),FullUser.class);
 //        System.out.println(fullUser);
         ObjectMapper map = new ObjectMapper();
-        map.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
         map.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         String string = (String) response.body();
         JSONArray jsonArray = new JSONArray(string);
@@ -243,5 +250,20 @@ public class RequestHandler implements Runnable{
 //        FullUser fullUser = map.convertValue(s,FullUser.class);
 //        List<FullUser> fullUser = map.readValue((response.body()),FullUser.class);
         return null;
+    }
+
+    public void travelAdd_request(TravelAdd travelAdd) throws IOException, InterruptedException {
+        mapper = new ObjectMapper();
+        client = HttpClient.newHttpClient();
+        jsonString = mapper.writeValueAsString(travelAdd);
+        request =  HttpRequest.newBuilder()
+                .uri(URI.create("http://127.0.0.1:8000/api/userTravelCreate"))
+                .header("content-Type","application/json")
+                .method("POST",HttpRequest.BodyPublishers.ofString(jsonString))
+                .build();
+        response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+        System.out.println(response.statusCode());
+
     }
 }
