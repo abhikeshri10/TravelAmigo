@@ -6,9 +6,9 @@
 ## Table of Contents:
 
 ## Introduction:
- *We are developing a software for state governments to manage control on inter-state migration.
+ * We are developing a software for state governments to manage control on inter-state migration.
  
- *This software will ease the state governments to know the cause why people are leaving their states and will help the state governments to develop their policy in relatively   easier way 
+ * This software will ease the state governments to know the cause why people are leaving their states and will help the state governments to develop their policy in relatively   easier way 
   
 
 
