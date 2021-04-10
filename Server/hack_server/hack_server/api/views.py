@@ -61,7 +61,7 @@ class sourceStateTravelListAPIView(ListAPIView):
             'purpose',]
 
     def get_queryset(self):
-        return travel.objects.filter(source_state=self.request.user.username)
+        return travel.objects.filter(source_state=self.request.user.first_name)
 
 class destStateTravelListAPIView(ListAPIView):
     permission_classes = import_string_list(drfr_settings.PROFILE_PERMISSION_CLASSES)
@@ -75,7 +75,7 @@ class destStateTravelListAPIView(ListAPIView):
             'purpose',]
 
     def get_queryset(self):
-        return travel.objects.filter(dest_state=self.request.user.username)
+        return travel.objects.filter(dest_state=self.request.user.first_name)
         
 
     
