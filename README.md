@@ -4,7 +4,7 @@
 </p>
 
 
-<h1 align="center">Hack36 </h1>
+<h1 align="center">Travel Amigo</h1>
 
 ## Table of Contents:
 - [INTRODUCTION](#introduction)
@@ -18,13 +18,13 @@
   
 ## WHY WE BUILT THIS
 
-* 	It’s quite common that people migrate to other places searching for better livelihood, education, healthcare facilities.
+* 	It’s quite common that people migrate to from one state to other searching for better livelihood, education, healthcare facilities.
 	
 * 	But it is resulting in uneven distribution of development over the entire country, resulting in few places to be developed like  Hub, ex Mumbai for Bollywood industry, Bangalore for tech industries.
 
 * 	Currently, there is no system of monitoring the inflow and outflow of human resources of the state.
 
-* 	So we think to develop a digital software that will maintain the digital record of inter-state migrations.
+* 	So we think to develop a digital platform that will maintain the digital record of inter-state migrations.
 
 * 	It will help the state to monitor the inflow and outflow of human resources easily.
 
