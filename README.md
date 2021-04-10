@@ -38,6 +38,9 @@
   4) Django
   5) CSS
   
+## Links of documentation and video
+[TravelAmigo PPT](https://docs.google.com/presentation/d/1SrB7kCVv4JhLUOCFiBg-Fpy6guMQde4aG5oD6xsV_Ds/edit?usp=sharing)
+
 
 ## Contributors
 
