@@ -33,6 +33,7 @@ class travelCreateSerializer(ModelSerializer):
             'source_state',
             'dest_city',
             'dest_state',
+            'age',
             'duration_days',
             'purpose',
         )
@@ -41,11 +42,16 @@ class fullUserListSerializer(ModelSerializer):
     class Meta:
         model = fullUser
         fields = (
+            'username',
+            'name',
+            'email',
+            'phone_number'
+            'dob',
+            'address_1',
+            'address_2',
             'city',
             'state',
-            'phone_number',
-            'username',
-            'dob',
+            'pincode',
             'education',
             'employment',
             'married',
@@ -55,11 +61,16 @@ class fullUserCreateSerializer(ModelSerializer):
     class Meta:
         model = fullUser
         fields = (
+            'username',
+            'name',
+            'email',
+            'phone_number'
+            'dob',
+            'address_1',
+            'address_2',
             'city',
             'state',
-            'phone_number',
-            'username',
-            'dob',
+            'pincode',
             'education',
             'employment',
             'married',
