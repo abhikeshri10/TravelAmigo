@@ -6,6 +6,9 @@
 ## Table of Contents:
 
 ## Introduction:
+ *We are developing a software for state governments to manage control on inter-state migration.
+ 
+ *This software will ease the state governments to know the cause why people are leaving their states and will help the state governments to develop their policy in relatively   easier way 
   
 
 
@@ -25,5 +28,4 @@ Team Name: WB_MKD
 * [Abhishek Keshri](https://github.com/abhikeshri10)
 * [Vitthal Goyal](https://github.com/vitthalgoyal8)
 
-### Made at:
-<a href="https://hack36.com"> <img src="http://bit.ly/BuiltAtHack36" height=20px> </a>
+
