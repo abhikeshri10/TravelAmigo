@@ -43,8 +43,10 @@ class fullUserCreateAPIView(CreateAPIView):
     serializer_class = fullUserCreateSerializer
 
 class fullUserUpdateAPIView(RetrieveUpdateAPIView):
+    permission_classes = import_string_list(drfr_settings.PROFILE_PERMISSION_CLASSES)
     queryset = fullUser.objects.all()
-    serializer_class = fullUserCreateSerializer 
+    serializer_class = fullUserCreateSerializer
+    lookup_field = 'username'
 
 
 class sourceStateTravelListAPIView(ListAPIView):
