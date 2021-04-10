@@ -8,7 +8,7 @@ public class FullUser implements Serializable {
     private String name;
     private String email;
     private String phone_number;
-    private Date dob;
+    private String dob;
     private String address_1;
     private String address_2;
     private String city;
@@ -21,7 +21,7 @@ public class FullUser implements Serializable {
     public FullUser() {
     }
 
-    public FullUser(String username, String name, String email, String phone_number, Date dob, String address_1, String address_2, String city, String state, String pincode, String education, String employment, boolean married) {
+    public FullUser(String username, String name, String email, String phone_number, String dob, String address_1, String address_2, String city, String state, String pincode, String education, String employment, boolean married) {
         this.username = username;
         this.name = name;
         this.email = email;
@@ -118,11 +118,11 @@ public class FullUser implements Serializable {
         this.phone_number = phone_number;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 
