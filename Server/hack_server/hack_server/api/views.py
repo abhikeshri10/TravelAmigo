@@ -52,30 +52,60 @@ class fullUserUpdateAPIView(RetrieveUpdateAPIView):
 class sourceStateTravelListAPIView(ListAPIView):
     permission_classes = import_string_list(drfr_settings.PROFILE_PERMISSION_CLASSES)
     serializer_class = travelListSerializer 
-    queryset =travel.objects.all()
-    filterset_fields = [
-            'ticket_category',
-            'journey_date',
-            'dest_state',
-            'age',
-            'purpose',]
-
+    
     def get_queryset(self):
-        return travel.objects.filter(source_state=self.request.user.first_name)
+        queryset =travel.objects.filter(source_state=self.request.user.first_name)
+        highAge = self.request.query_params.get('highAge')
+        lowAge = self.request.query_params.get('lowAge')
+        startDate = self.request.query_params.get('startDate')
+        endDate = self.request.query_params.get('endDate')
+        purpose = self.request.query_params.get('purposee')
+        destState = self.request.query_params.get('destState')
+        
+        if highAge is not None:
+            queryset = queryset.filter(age__lte=highAge)
+        if lowAge is not None:
+            queryset = queryset.filter(age__gte=lowAge)
+        if endDate is not None:
+            queryset = queryset.filter(journey_date__lte=endDate)
+        if startDate is not None:
+            queryset = queryset.filter(journey_date__gte=startDate)
+        if purpose is not None:
+            queryset = queryset.filter(purpose=purpose)
+        if destState is not None:
+            queryset = queryset.filter(dest_state=destState)
+                
+        return queryset
+        
 
 class destStateTravelListAPIView(ListAPIView):
-    permission_classes = import_string_list(drfr_settings.PROFILE_PERMISSION_CLASSES)
+    #permission_classes = import_string_list(drfr_settings.PROFILE_PERMISSION_CLASSES)
     serializer_class = travelListSerializer 
-    queryset =travel.objects.all()
-    filterset_fields = [
-            'ticket_category',
-            'journey_date',
-            'source_state',
-            'age',
-            'purpose',]
-
+    
     def get_queryset(self):
-        return travel.objects.filter(dest_state=self.request.user.first_name)
+        queryset = travel.objects.all()
+        #queryset =travel.objects.filter(dest_state=self.request.user.first_name)
+        highAge = self.request.query_params.get('highAge')
+        lowAge = self.request.query_params.get('lowAge')
+        startDate = self.request.query_params.get('startDate')
+        endDate = self.request.query_params.get('endDate')
+        purpose = self.request.query_params.get('purposee')
+        sourceState = self.request.query_params.get('sourceState')
+        
+        if highAge is not None:
+            queryset = queryset.filter(age__lte=highAge)
+        if lowAge is not None:
+            queryset = queryset.filter(age__gte=lowAge)
+        if endDate is not None:
+            queryset = queryset.filter(journey_date__lte=endDate)
+        if startDate is not None:
+            queryset = queryset.filter(journey_date__gte=startDate)
+        if purpose is not None:
+            queryset = queryset.filter(purpose=purpose)
+        if sourceState is not None:
+            queryset = queryset.filter(source_state=sourceState)
+                
+        return queryset
         
 
     
