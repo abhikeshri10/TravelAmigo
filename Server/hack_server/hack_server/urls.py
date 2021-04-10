@@ -19,4 +19,5 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/',include("hack_server.api.urls")),
+    path('api2/', include('drf_registration.urls')),
 ]
