@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="553.0" prefWidth="890.0" stylesheets="@../CSS/login.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SignUp">
+   <children>
+      <Pane layoutX="209.0" layoutY="27.0" prefHeight="498.0" prefWidth="472.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="209.0" AnchorPane.topAnchor="27.0">
+         <children>
+            <TextField fx:id="first_nameTF" layoutX="207.0" layoutY="26.0" prefHeight="34.0" prefWidth="203.0" promptText="Enter your first name">
+               <font>
+                  <Font name="Century" size="17.0" />
+               </font>
+            </TextField>
+            <Button fx:id="singInBT" layoutX="37.0" layoutY="413.0" mnemonicParsing="false" onAction="#login" prefHeight="41.0" prefWidth="120.0" style="-fx-background-color: black;" text="Sign In" textFill="WHITE" />
+            <PasswordField fx:id="passwordTF" layoutX="207.0" layoutY="284.0" prefHeight="34.0" prefWidth="203.0" promptText="Type Password">
+               <font>
+                  <Font name="Century" size="17.0" />
+               </font>
+            </PasswordField>
+            <Button fx:id="signUpBT" layoutX="295.0" layoutY="413.0" mnemonicParsing="false" onAction="#register_request" prefHeight="41.0" prefWidth="120.0" style="-fx-background-color: black;" text="Sign Up" textFill="WHITE" />
+            <TextField fx:id="usernameTF" layoutX="207.0" layoutY="232.0" prefHeight="34.0" prefWidth="203.0" promptText="Enter Username">
+               <font>
+                  <Font name="Century" size="17.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="emailTF" layoutX="207.0" layoutY="116.0" prefHeight="34.0" prefWidth="203.0" promptText="Enter valid email">
+               <font>
+                  <Font name="Century" size="17.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="phoneTF" layoutX="207.0" layoutY="168.0" prefHeight="34.0" prefWidth="203.0" promptText="Enter phone">
+               <font>
+                  <Font name="Century" size="17.0" />
+               </font>
+            </TextField>
+            <Label alignment="CENTER" layoutX="58.0" layoutY="26.0" prefHeight="34.0" prefWidth="120.0" text="First Name" />
+            <Label alignment="CENTER" layoutX="58.0" layoutY="116.0" prefHeight="34.0" prefWidth="120.0" text="Email" />
+            <Label alignment="CENTER" layoutX="58.0" layoutY="168.0" prefHeight="34.0" prefWidth="120.0" text="Phone" />
+            <Label alignment="CENTER" layoutX="58.0" layoutY="232.0" prefHeight="34.0" prefWidth="120.0" text="Username" />
+            <Label alignment="CENTER" layoutX="58.0" layoutY="284.0" prefHeight="34.0" prefWidth="120.0" text="Password" />
+            <PasswordField fx:id="password2TF" layoutX="207.0" layoutY="331.0" prefHeight="34.0" prefWidth="203.0" promptText="Retype Password">
+               <font>
+                  <Font name="Century" size="17.0" />
+               </font>
+            </PasswordField>
+            <CheckBox fx:id="agreeChB" layoutX="113.0" layoutY="376.0" mnemonicParsing="false" text="I accept the terms and condition " textFill="#f4f1f1">
+               <font>
+                  <Font size="15.0" />
+               </font></CheckBox>
+            <TextField fx:id="last_nameTF" layoutX="207.0" layoutY="73.0" prefHeight="34.0" prefWidth="203.0" promptText="Enter your last name">
+               <font>
+                  <Font name="Century" size="17.0" />
+               </font>
+            </TextField>
+            <Label alignment="CENTER" layoutX="58.0" layoutY="73.0" prefHeight="34.0" prefWidth="120.0" text="Last Name" />
+         </children>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.4003118872642517" green="0.5580506920814514" blue="0.7157894968986511" />
+               </color>
+            </DropShadow>
+         </effect>
+         <stylesheets>
+            <URL value="@../CSS/theme.css" />
+            <URL value="@../CSS/style.css" />
+         </stylesheets>
+      </Pane>
+   </children>
+</AnchorPane>
