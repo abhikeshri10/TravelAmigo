@@ -17,24 +17,12 @@ import javafx.stage.Stage;
 import javax.swing.*;
 import java.io.IOException;
 
-public class Login  extends Application {
+public class Login {
     public TextField usernameTF;
     public Button signInBT;
     public PasswordField passwordTF;
     public static User user;
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../FXML/Login.fxml"));
-        primaryStage.setTitle("Yaatra");
-        primaryStage.setScene(new Scene(root));
 
-        primaryStage.show();
-    }
-
-    public static void main(String[] args)  {
-
-        launch(args);
-    }
     public void login_request(ActionEvent event) throws IOException, InterruptedException {
         String username = usernameTF.getText();
         String password = passwordTF.getText();

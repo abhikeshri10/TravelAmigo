@@ -1,6 +1,7 @@
 package Handler;
 
-import Helper.FullUser;
+
+import Helper.TravelTable;
 import Helper.User;
 import Main.ClientMain;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -16,7 +17,9 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class RequestHandler implements Runnable{
     public User user;
@@ -54,103 +57,9 @@ public class RequestHandler implements Runnable{
     }
 
 
-    public User register_request(User user) throws IOException, InterruptedException {
-        mapper = new ObjectMapper();
-        jsonString = null;
 
-        try {
-            jsonString = mapper.writeValueAsString(user);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-//                  System.out.println(jsonString);
 
-        client = HttpClient.newHttpClient();
-        request = HttpRequest.newBuilder()
-                .uri(URI.create("http://127.0.0.1:8000/api2/register/"))
-                .setHeader("content-type","application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(jsonString))
-                .build();
-        response = null;
-        try {
-            response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println(response.body());
-        System.out.println(response.statusCode());
-        int s = response.statusCode();
-        System.out.println(s);
-        if(s/100==4||s/100==5)
-        {
-            JOptionPane.showMessageDialog(null,response.body());
-            return  null;
-        }
-        else
-        {
-            System.out.println("Success Login");
 
-            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
-            User user2 = mapper.readValue((response.body()),User.class);
-            ClientMain.user = user2;
-            this.create_fulluser();
-            return user2;
-//            return  null;
-        }
-
-//        return  null;
-
-    }
-
-    private void create_fulluser() throws IOException, InterruptedException {
-        String username = ClientMain.user.getUsername();
-        String name = ClientMain.user.getFirst_name()+" "+ClientMain.user.getLast_name();
-        String email = ClientMain.user.getEmail();
-        String phone_number = "";
-//        String str= "2021-10-04";
-//        java.sql.Date dob = null;
-        String address_1 = "";
-        String address_2 = "";
-        String city = "";
-        String state = "";
-        String pincode = "";
-        String education = "";
-        String employment = "";
-        Boolean married = false;
-        System.out.println(username);
-//        System.out.println(dob);
-        FullUser fullUser = new FullUser(username,name,email,phone_number,address_1,address_2,city,state,pincode,education,employment,married);
-        mapper = new ObjectMapper();
-        jsonString = null;
-
-        try {
-            jsonString = mapper.writeValueAsString(fullUser);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-//                  System.out.println(jsonString);
-
-        client = HttpClient.newHttpClient();
-        request = HttpRequest.newBuilder()
-                .uri(URI.create("http://127.0.0.1:8000/api/fullUserCreate"))
-                .setHeader("content-type","application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(jsonString))
-                .build();
-        response = null;
-        try {
-            response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println(response.body());
-        System.out.println(response.statusCode());
-
-    }
 
     public User login_request(String username, String password) throws IOException, InterruptedException {
         mapper = new ObjectMapper();
@@ -192,6 +101,99 @@ public class RequestHandler implements Runnable{
 
     }
 
+
+    public List<TravelTable> inflow_request(String lowAge, String highAge, String startDate, String endDate, String purposee, String destState) throws IOException, InterruptedException, JSONException {
+        String filter1 = "?lowAge="+lowAge;
+        String filter2 = "&highAge="+highAge;
+        String filter3 = "&startDate="+startDate;
+        String filter4 = "&endDate="+endDate;
+        String filter5 ="";
+        String filter6 ="";
+        if(purposee.length()!=0)
+        {
+            filter5 = "&purposee="+purposee;
+
+        }
+        if(destState.length()!=0)
+        {
+            filter6 = "&sourceState="+destState;
+        }
+        System.out.println(URI.create("http://127.0.0.1:8000/api/destStateView"+filter1+filter2+filter3+filter4+filter5+filter6));
+        client = HttpClient.newHttpClient();
+        request = HttpRequest.newBuilder()
+                .uri(URI.create("http://127.0.0.1:8000/api/destStateView"+filter1+filter2+filter3+filter4+filter5+filter6))
+                .header("Authorization","Token "+ClientMain.user.getToken())
+                .build();
+        response = null;
+        response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        String string = response.body();
+        System.out.println(string);
+        JSONArray jsonArray = new JSONArray(string);
+//        System.out.println(jsonArray);
+        int n = jsonArray.length();
+        List<TravelTable> travelTables = new ArrayList<>();
+        for(int i=0;i<n;i++)
+        {
+            JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+            String journey_date = jsonObject.getString("journey_date");
+            String ticket_number = jsonObject.getString("ticket_number");
+            String purpose = jsonObject.getString("purpose");
+            Integer age = jsonObject.getInt("age");
+            Integer duration_days = jsonObject.getInt("duration_days");
+            String ticket_category = jsonObject.getString("ticket_category");
+            String source_state = jsonObject.getString("source_state");
+            TravelTable travelTable = new TravelTable(i+1,journey_date,ticket_number,purpose,age,duration_days,ticket_category,source_state);
+            travelTables.add(travelTable);
+        }
+        return travelTables;
+
+    }
+
+    public List<TravelTable> outflow_request(String lowAge, String highAge, String startDate, String endDate, String purposee, String destState) throws JSONException, IOException, InterruptedException {
+        String filter1 = "?lowAge="+lowAge;
+        String filter2 = "&highAge="+highAge;
+        String filter3 = "&startDate="+startDate;
+        String filter4 = "&endDate="+endDate;
+        String filter5 ="";
+        String filter6 ="";
+        if(purposee.length()!=0)
+        {
+            filter5 = "&purposee="+purposee;
+
+        }
+        if(destState.length()!=0)
+        {
+            filter6 = "&destState="+destState;
+        }
+        System.out.println(URI.create("http://127.0.0.1:8000/api/sourceStateView"+filter1+filter2+filter3+filter4+filter5+filter6));
+        client = HttpClient.newHttpClient();
+        request = HttpRequest.newBuilder()
+                .uri(URI.create("http://127.0.0.1:8000/api/sourceStateView"+filter1+filter2+filter3+filter4+filter5+filter6))
+                .header("Authorization","Token "+ClientMain.user.getToken())
+                .build();
+        response = null;
+        response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        String string = response.body();
+        System.out.println(string);
+        JSONArray jsonArray = new JSONArray(string);
+//        System.out.println(jsonArray);
+        int n = jsonArray.length();
+        List<TravelTable> travelTables = new ArrayList<>();
+        for(int i=0;i<n;i++)
+        {
+            JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+            String journey_date = jsonObject.getString("journey_date");
+            String ticket_number = jsonObject.getString("ticket_number");
+            String purpose = jsonObject.getString("purpose");
+            Integer age = jsonObject.getInt("age");
+            Integer duration_days = jsonObject.getInt("duration_days");
+            String ticket_category = jsonObject.getString("ticket_category");
+            String source_state = jsonObject.getString("dest_state");
+            TravelTable travelTable = new TravelTable(i+1,journey_date,ticket_number,purpose,age,duration_days,ticket_category,source_state);
+            travelTables.add(travelTable);
+        }
+        return travelTables;
+    }
     public void signout_request() throws IOException, InterruptedException {
         client = HttpClient.newHttpClient();
         request =  HttpRequest.newBuilder()
@@ -201,44 +203,5 @@ public class RequestHandler implements Runnable{
                 .build();
         response = client.send(request, HttpResponse.BodyHandlers.ofString());
         System.out.println(response.statusCode());
-    }
-
-    /**
-     * @// TODO: 4/10/2021 deserialize jsonobject
-     * @return
-     * @throws IOException
-     * @throws InterruptedException
-     * @throws JSONException
-     */
-    public FullUser fullUser_request() throws IOException, InterruptedException, JSONException {
-        System.out.println(ClientMain.user.getToken());
-        mapper = new ObjectMapper();
-        client = HttpClient.newHttpClient();
-        request =  HttpRequest.newBuilder()
-                .uri(URI.create("http://127.0.0.1:8000/api/fullUserView"))
-                .header("Authorization","Token "+ClientMain.user.getToken())
-                .build();
-        response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.statusCode());
-        if(response.statusCode()/100==4)
-        {
-            System.out.println("Error fetching full user");
-            return  null;
-        }
-        System.out.println(response.body());
-
-//        FullUser fullUser = mapper.readValue((response.body()),FullUser.class);
-//        System.out.println(fullUser);
-        ObjectMapper map = new ObjectMapper();
-        map.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        map.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        String string = (String) response.body();
-        JSONArray jsonArray = new JSONArray(string);
-//        System.out.println(jsonObject);
-        JSONObject jsonObject = (JSONObject) jsonArray.get(0);
-        String s = jsonObject.toString();
-//        FullUser fullUser = map.convertValue(s,FullUser.class);
-//        List<FullUser> fullUser = map.readValue((response.body()),FullUser.class);
-        return null;
     }
 }
