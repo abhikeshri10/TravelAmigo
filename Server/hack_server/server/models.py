@@ -23,9 +23,9 @@ class fullUser(models.Model):
     
 
 class travel(models.Model):
-    username = models.CharField(max_length=200,unique=True)
-    ticket_category = models.CharField(max_length=20)
-    ticket_number = models.CharField(max_length=20)
+    username = models.CharField(max_length=200,blank=True)
+    ticket_category = models.CharField(max_length=20,blank=True)
+    ticket_number = models.CharField(max_length=20,blank=True)
     journey_date = models.DateField(("Date"),default=date.today)
     source_city = models.CharField(max_length=20,blank=True)
     source_state = models.CharField(max_length=20,blank=True)
