@@ -79,12 +79,12 @@ class sourceStateTravelListAPIView(ListAPIView):
         
 
 class destStateTravelListAPIView(ListAPIView):
-    #permission_classes = import_string_list(drfr_settings.PROFILE_PERMISSION_CLASSES)
+    permission_classes = import_string_list(drfr_settings.PROFILE_PERMISSION_CLASSES)
     serializer_class = travelListSerializer 
     
     def get_queryset(self):
-        queryset = travel.objects.all()
-        #queryset =travel.objects.filter(dest_state=self.request.user.first_name)
+        #queryset = travel.objects.all()
+        queryset =travel.objects.filter(dest_state=self.request.user.first_name)
         highAge = self.request.query_params.get('highAge')
         lowAge = self.request.query_params.get('lowAge')
         startDate = self.request.query_params.get('startDate')
