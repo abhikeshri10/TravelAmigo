@@ -45,7 +45,7 @@ class fullUserListSerializer(ModelSerializer):
             'username',
             'name',
             'email',
-            'phone_number'
+            'phone_number',
             'dob',
             'address_1',
             'address_2',
@@ -64,7 +64,27 @@ class fullUserCreateSerializer(ModelSerializer):
             'username',
             'name',
             'email',
-            'phone_number'
+            'phone_number',
+            'dob',
+            'address_1',
+            'address_2',
+            'city',
+            'state',
+            'pincode',
+            'education',
+            'employment',
+            'married',
+        )
+
+
+class fullUserUpdateSerializer(ModelSerializer):
+    class Meta:
+        model = fullUser
+        fields = (
+            'username',
+            'name',
+            'email',
+            'phone_number',
             'dob',
             'address_1',
             'address_2',

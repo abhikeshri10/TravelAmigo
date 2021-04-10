@@ -12,6 +12,7 @@ from .serializer import (
     travelCreateSerializer,
     fullUserListSerializer,
     fullUserCreateSerializer,
+    fullUserUpdateSerializer,
     )
 
 class userTravelListAPIView(ListAPIView):
@@ -38,6 +39,10 @@ class fullUserListAPIView(ListAPIView):
 
 
 class fullUserCreateAPIView(CreateAPIView):
+    queryset = fullUser.objects.all()
+    serializer_class = fullUserCreateSerializer
+
+class fullUserUpdateAPIView(RetrieveUpdateAPIView):
     queryset = fullUser.objects.all()
     serializer_class = fullUserCreateSerializer 
 
