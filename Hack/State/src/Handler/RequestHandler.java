@@ -3,7 +3,6 @@ package Handler;
 import Helper.FullUser;
 import Helper.User;
 import Main.ClientMain;
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,9 +16,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 
 public class RequestHandler implements Runnable{
     public User user;

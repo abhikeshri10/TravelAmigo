@@ -1,4 +1,4 @@
-import Helper.TravelRequest;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -82,14 +82,14 @@ public class Test {
 //                .build();
 //        HttpResponse response = client.send(request,HttpResponse.BodyHandlers.ofString());
 //        System.out.println(response.body());
-        TravelRequest travelRequest = new TravelRequest();
-        ObjectMapper objectMapper = new ObjectMapper();
-        String jsonString = null;
-        try {
-            jsonString = objectMapper.writeValueAsString(travelRequest);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+//        TravelRequest travelRequest = new TravelRequest();
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        String jsonString = null;
+//        try {
+//            jsonString = objectMapper.writeValueAsString(travelRequest);
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        }
 //        HttpClient client = HttpClient.newHttpClient();
 //
 //        HttpRequest request1 = HttpRequest.newBuilder()
@@ -100,7 +100,7 @@ public class Test {
 //
 //           HttpResponse response1 = client.send(request1,HttpResponse.BodyHandlers.ofString());
 
-        System.out.println(jsonString);
+//        System.out.println(jsonString);
 
     }
 }
