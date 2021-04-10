@@ -4,23 +4,35 @@ import Handler.RequestHandler;
 import Helper.FullUser;
 import Main.ClientMain;
 import Main.SceneChanger;
+import com.mysql.fabric.Response;
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import java.awt.*;
+import java.io.*;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.charset.Charset;
+import java.util.ResourceBundle;
+
+
 import org.json.JSONException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.ResourceBundle;
 
 public class Profile implements Initializable {
     public TextField tf_state;
@@ -46,7 +58,7 @@ public class Profile implements Initializable {
     @FXML
     private Pane pane_basic, pane_employment, pane_travel;
     private FullUser fullUser;
-    public void handleButtonActivity(ActionEvent event) {
+    public void handleButtonActivity(javafx.event.ActionEvent event) {
         if (event.getSource() == bt_basic) {
             this.pane_basic.toFront();
         } else if (event.getSource() == bt_employment) {
@@ -58,8 +70,8 @@ public class Profile implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-       String token = ClientMain.user.getToken();
-       RequestHandler r = new RequestHandler();
+        String token = ClientMain.user.getToken();
+        RequestHandler r = new RequestHandler();
         try {
             this.fullUser = r.fullUser_request();
             System.out.println(fullUser);
@@ -137,5 +149,9 @@ public class Profile implements Initializable {
         RequestHandler r = new RequestHandler();
         r.signout_request();
         new SceneChanger().changeScene("../FXML/Login.fxml","Login",event);
+    }
+
+    public void addTravel(ActionEvent event) {
+        new SceneChanger().changeScene("../FXMl/Travel.fxml","Travel",event);
     }
 }
