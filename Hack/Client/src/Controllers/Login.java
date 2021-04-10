@@ -56,10 +56,10 @@ public class Login implements Initializable {
             RequestHandler r = new RequestHandler();
             ClientMain.user = r.login_request(username,password);
             System.out.println(ClientMain.user);
-//            if(ClientMain.user!=null)
-//                new SceneChanger().changeScene("../FXML/Profile.fxml","Yaatra",event);
-//            else
-//                JOptionPane.showMessageDialog(null,"Wrong Credentials");
+            if(ClientMain.user!=null)
+                new SceneChanger().changeScene("../FXML/Profile.fxml","Yaatra",event);
+            else
+                JOptionPane.showMessageDialog(null,"Wrong Credentials");
         }
         else
         {
