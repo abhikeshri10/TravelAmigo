@@ -7,8 +7,12 @@
 <h1 align="center">Hack36 </h1>
 
 ## Table of Contents:
-
-## Introduction:
+- [INTRODUCTION](#introduction)
+- [WHY WE BUILT THIS](#why-we-built-this)
+- [TECHNOLOGY STACK](#technology-stack)
+- [CONTRIBUTORS](#contributors)
+ 
+## Introduction
  * A digital platform for monitoring the inflow and outflow of human resources of states.
  
   
@@ -27,7 +31,7 @@
 * 	It will help the state easily develop their development policies. If there is a large outflow in any domain(like Education, Employment), then the state will know it very easily and take the actions needed. 
 
 
-## Technology Stack:
+## Technology Stack
   1) JAVA
   2) Javafx
   3) Python
@@ -35,7 +39,7 @@
   5) CSS
   
 
-## Contributors:
+## Contributors
 
 Team Name: WB_MKD
 
