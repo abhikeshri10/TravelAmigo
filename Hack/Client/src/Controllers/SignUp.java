@@ -56,8 +56,8 @@ public class SignUp implements Initializable {
                          RequestHandler r = new RequestHandler();
                          ClientMain.user = r.register_request(user);
                          System.out.println(ClientMain.user);
-                         if(ClientMain.user!=null)
-                             new SceneChanger().changeScene("../FXML/Profile.fxml","Yaatra",event);
+//                         if(ClientMain.user!=null)
+//                             new SceneChanger().changeScene("../FXML/Profile.fxml","Yaatra",event);
 
                     }
                     else

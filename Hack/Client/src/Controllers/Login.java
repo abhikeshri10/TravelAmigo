@@ -1,5 +1,10 @@
 package Controllers;
 
+import Handler.Request;
+import Handler.RequestHandler;
+import Helper.User;
+import Main.ClientMain;
+import Main.SceneChanger;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.application.Application;
@@ -40,19 +45,21 @@ public class Login implements Initializable {
 
     }
 
-    /**
-     * Login request
-     * @param event
-     * @throws IOException
-     * @throws InterruptedException
-     */
+
     public void login_request(ActionEvent event) throws IOException, InterruptedException {
         String username = usernameTF.getText();
         String password = passwordTF.getText();
 
         if(username.length()>0&&password.length()>0)
         {
-
+//                      new RequestHandler(Request.LOGIN,username,password);
+            RequestHandler r = new RequestHandler();
+            ClientMain.user = r.login_request(username,password);
+            System.out.println(ClientMain.user);
+//            if(ClientMain.user!=null)
+//                new SceneChanger().changeScene("../FXML/Profile.fxml","Yaatra",event);
+//            else
+//                JOptionPane.showMessageDialog(null,"Wrong Credentials");
         }
         else
         {
@@ -66,7 +73,7 @@ public class Login implements Initializable {
      * @param event
      */
     public void register(ActionEvent event) {
-
+        new SceneChanger().changeScene("../FXML/SignUp.fxml","Register",event);
 
     }
 }
