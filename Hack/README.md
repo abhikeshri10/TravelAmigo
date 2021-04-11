@@ -23,6 +23,7 @@
   4) To run any of the two module move to Client/Main or State/Main.
   5) Run the ClientMain.java file after adding --module-path /path/to/javafx/sdk --add-modules javafx.controls,javafx.fxml
  in VM options in edit configuration.
+  6) Repeat the same for State (For states username = state name without space like [UttarPradesh]() and password for all states has been set as [pass@1234]())
 
 ## Dependancies
 
