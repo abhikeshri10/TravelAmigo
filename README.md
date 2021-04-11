@@ -7,10 +7,13 @@
 <h1 align="center">Travel Amigo</h1>
 
 ## Table of Contents:
-- [INTRODUCTION](#introduction)
-- [WHY WE BUILT THIS](#why-we-built-this)
-- [TECHNOLOGY STACK](#technology-stack)
-- [CONTRIBUTORS](#contributors)
+- [Introdection](#introduction)
+- [Why we built this](#why-we-built-this)
+- [Technology Stack](#technology-stack)
+- [Features](#features)
+	* [User Features](#user-side-features)
+	* [State Features](#state-side-features)
+- [Contributors](#contributors)
  
 ## Introduction
  * A digital platform for monitoring the inflow and outflow of human resources of states.
@@ -37,6 +40,23 @@
   3) Python
   4) Django
   5) CSS
+
+## Features
+
+### User Side Features
+ 1) Login SignUp Facility for Users
+ 2) Able to save and update their personal details
+ 3) We have used pincode api to authenticate address of user
+ 4) User are able to see their past travel history
+ 5)  An add travel record page to add the details of recent travel booking using PNR aur Air Ticket Number.
+
+### State Side Features
+ 1) Login Facility for each State authorities
+ 2) A custom request to filter the inflow outflow data of their sate using filters of Age , Duration , Purpose, Destination, Source and other factors.
+ 3) A table showing the records and count of all the travels.
+
+
+
   
 ## Links of documentation and video
 [TravelAmigo PPT](https://docs.google.com/presentation/d/1SrB7kCVv4JhLUOCFiBg-Fpy6guMQde4aG5oD6xsV_Ds/edit?usp=sharing)
