@@ -13,6 +13,7 @@
 - [Features](#features)
 	* [User Features](#user-side-features)
 	* [State Features](#state-side-features)
+- [Links of documentation and video](#links-of-documentation-and-video)
 - [Contributors](#contributors)
  
 ## Introduction
