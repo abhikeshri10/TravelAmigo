@@ -53,9 +53,40 @@ public class Profile implements Initializable {
     public void handleButtonActivity(ActionEvent event) {
         if (event.getSource() == bt_inflow) {
             this.s = "inflow";
+            purposeCB.getSelectionModel().clearSelection();
+            dest_stateCB.getSelectionModel().clearSelection();
+
+            startAgeTF.setText("");
+            endAgeTF.setText("");
+            purposee = "";
+            destState = "";
+            startDate = "1984-01-01";
+            endDate = "2022-12-12";
+            startTimeTF.setValue(null);
+            endTimeTF.setValue(null);
+            highAge = "200";
+            lowAge = "0";
+            countTF.setText("Inflow");
+            travelTB.getItems().removeAll();
 
         } else if (event.getSource() == bt_outflow) {
             this.s="outflow";
+            purposeCB.getSelectionModel().clearSelection();
+            dest_stateCB.getSelectionModel().clearSelection();
+
+            startAgeTF.setText("");
+            endAgeTF.setText("");
+            purposee = "";
+            destState = "";
+            startDate = "1984-01-01";
+            endDate = "2022-12-12";
+            startTimeTF.setValue(null);
+            endTimeTF.setValue(null);
+            highAge = "200";
+            lowAge = "0";
+            countTF.setText("Outflow");
+            travelTB.getItems().removeAll();
+
         }
 
     }
@@ -98,7 +129,7 @@ public class Profile implements Initializable {
             if(tableEntry!=null)
             {
                 System.out.println(tableEntry.size());
-                countTF.setText("Total Count: "+tableEntry.size());
+                countTF.setText("Inflow\n"+tableEntry.size());
                 ObservableList<TravelTable> observableList = FXCollections.observableArrayList(tableEntry);
                 System.out.println(tableEntry);
                 System.out.println(observableList);
@@ -159,7 +190,7 @@ public class Profile implements Initializable {
             if(tableEntry!=null)
             {
                 System.out.println(tableEntry.size());
-                countTF.setText("Total Count: "+tableEntry.size());
+                countTF.setText("Outflow\n"+tableEntry.size());
                 ObservableList<TravelTable> observableList = FXCollections.observableArrayList(tableEntry);
                 System.out.println(tableEntry);
                 System.out.println(observableList);
