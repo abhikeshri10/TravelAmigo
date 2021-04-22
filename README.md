@@ -64,6 +64,12 @@
 
 [TravelAmigo Video](https://youtu.be/uCebfskd5Nk)
 
+## Pictures
+![image](https://user-images.githubusercontent.com/60318491/115683879-805c5280-a374-11eb-9ba0-7e9e817703e8.png)
+![image](https://user-images.githubusercontent.com/60318491/115683951-923df580-a374-11eb-817f-424ae2efbf2b.png)
+![image](https://user-images.githubusercontent.com/60318491/115684142-b994c280-a374-11eb-9401-3f545f8e709a.png)
+
+
 ## Contributors
 
 Team Name: WB_MKD
